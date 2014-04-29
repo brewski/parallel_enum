@@ -20,20 +20,20 @@ Or install it yourself as:
 
 ```ruby
   require 'parallel_enum'
-  require 'parallel_enum/core_ext/enumerable' # optional
 
-  (1..10).in_parallel(5).map { |i| sleep 0.1; i }
-  # => [1, 2, 3, 5, 4, 6, 7, 9, 10, 8]
+  enum = ParallelEnum.new(10.times, 5)
+  enum.each { |i| sleep rand; print i }
+  # => 0365482179
 
-  ParallelEnum.num_threads = 5
-  (97..122).in_parallel.map(&:chr).map(&:upcase)
-  # => [1, 2, 3, 5, 4, 6, 7, 9, 10, 8]
+  require 'parallel_enum/core_ext/enumerable'
+  (1..10).in_parallel(5).map { |i| sleep 0.1; i * 2 }
+  # => [2, 6, 4, 8, 10, 12, 14, 16, 18, 20]
 
+  ParallelEnum.num_threads = 10
   require 'benchmark'
   puts Benchmark.measure { (1..10).each { sleep 1; } }
   # =>  0.000000   0.000000   0.000000 ( 10.001548)
-
-  puts Benchmark.measure { (1..10).in_parallel(10) { sleep 1; } }
+  puts Benchmark.measure { (1..10).in_parallel { sleep 1; } }
   # =>  0.000000   0.000000   0.000000 (  1.003057)
 
   require 'open-uri'
