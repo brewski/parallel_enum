@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Brian Abreu"]
   spec.email         = ["brian@nuts.com"]
   spec.description   = %q{A simple library for parallelizing enumeration}
-  spec.summary       = spec.summary
-  spec.homepage      = ""
+  spec.summary       = %q{Parallel enum is a very simple library for processing Enumerables on multiple threads.}
+  spec.homepage      = "https://github.com/brewski/parallel_enum"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

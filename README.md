@@ -1,6 +1,6 @@
 # ParallelEnum
 
-Parallel enum is a very simple library for enumerating Enumerables on multiple threads.
+Parallel enum is a very simple library for processing Enumerables on multiple threads.
 
 ## Installation
 
