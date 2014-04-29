@@ -16,9 +16,12 @@ class ParallelEnum < Enumerator
       channel = Agent::Channel.new(Object)
       threads = num_threads.times.map do
         Agent.go! do
-          while (channel.open?)
-            obj, success = channel.receive
-            yielder << obj if (success)
+          begin
+            loop do
+              obj, success = channel.receive
+              yielder << obj if (success)
+            end
+          rescue Agent::Errors::ChannelClosed
           end
         end
       end
